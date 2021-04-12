@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
     @if($errors->any())
         <ul>
         @foreach($errors->all() as $err)
@@ -15,18 +10,31 @@
     @endif
     <form action="{{route('project.store')}}" method="post">
     @csrf
-        <h1>Tambahkan Project</h1>
-        <p>
-            <label>Title</label>
-            <input type="text" name="title" require>
-        </p>
-        <p>
-            <label>Description</label>
-            <textarea name="description" id="description" cols="30" rows="10" require></textarea>
-        </p>
-        <p>
-            <button type="submit">Add</button>
-        </p>
+        <div class="container shadow rounded-lg p-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="display-4">Add Project</div>
+                </div>
+                <div class="col-12">
+                    <p>
+                        <label>Title</label>
+                        <input type="text" class="form-control" name="title" require>
+                    </p>
+                </div>
+
+                <div class="col-12">
+                    <p>
+                        <label>Description</label>
+                        <textarea name="description" class="form-control" id="description" cols="30" rows="10" require></textarea>
+                    </p>
+                </div>
+
+                <div class="col-12">
+                    <p>
+                        <button type="submit" class="btn btn-success w-100">Save</button>
+                    </p>
+                </div>
+            </div>
+        </div>
     </form>
-</body>
-</html>
+@endsection

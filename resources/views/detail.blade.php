@@ -1,23 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>{{$project->title}}</h1>
-    <h3>{{$project->description}}</h3>
+@extends('layouts.app')
 
-    <form action="{{route('project.edit',$project->id)}}" method="get">
-        <button type="submit">Edit</button>
-    </form>
+@section('content')
+    <div class="container shadow-sm p-3 rounded-lg">
+        <div class="row">
+            <div class="col-12">
+                <div class="display-3">{{$project->title}}</div>
+            </div>
 
-    <form action="{{route('project.destroy',$project->id)}}" method="post">
-    @csrf
-    @method('delete')
-        <button type="submit">Delete</button>
-    </form>
+            <div class="col-12">
+                <div class="text-muted">{{$project->description}}</div>
+            </div>
+        </div>
 
-</body>
-</html>
+        <div class="row mt-5">
+            <div class="col-6">
+                <form action="{{route('project.edit',$project->id)}}" method="get">
+                    <button type="submit" class="btn btn-primary w-100">Edit</button>
+                </form>
+            </div>
+            
+            <div class="col-6">
+                <form action="{{route   ('project.destroy',$project->id)}}" method="post">
+                @csrf
+                @method('delete')
+                    <button type="submit" class="btn btn-danger w-100">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
